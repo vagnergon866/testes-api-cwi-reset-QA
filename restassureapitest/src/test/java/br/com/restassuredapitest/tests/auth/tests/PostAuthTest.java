@@ -3,7 +3,6 @@ package br.com.restassuredapitest.tests.auth.tests;
 import br.com.restassuredapitest.base.BaseTest;
 import br.com.restassuredapitest.suites.AllTests;
 import br.com.restassuredapitest.tests.auth.requests.PostAuthRequest;
-import org.json.JSONException;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -15,7 +14,7 @@ public class PostAuthTest extends BaseTest {
 
     @Test
     @Category(AllTests.class)
-    public void validaRetornoDeTokenParaUsuario() throws JSONException {
+    public void validaRetornoDeTokenParaUsuario() {
         postAuthRequest.tokenReturn()
                 .then()
                 .statusCode(200)

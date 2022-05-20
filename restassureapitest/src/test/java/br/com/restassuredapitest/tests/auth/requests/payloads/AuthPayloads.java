@@ -1,11 +1,10 @@
 package br.com.restassuredapitest.tests.auth.requests.payloads;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class AuthPayloads {
 
-    public JSONObject jsonAuthLogin() throws JSONException {
+    public JSONObject jsonAuthLogin() {
         JSONObject payloadLogin = new JSONObject();
 
         payloadLogin.put("username", "admin");

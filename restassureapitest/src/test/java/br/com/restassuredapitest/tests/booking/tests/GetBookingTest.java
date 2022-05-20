@@ -14,7 +14,7 @@ public class GetBookingTest extends BaseTest {
 
     @Test
     @Category({AllTests.class})
-    public void validaListagensDeIdsDasReservas(){
+    public void validaListagensDeIdsDasReservas() {
 
         getBookingRequest.bookingReturnIds()
                 .then()
