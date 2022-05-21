@@ -36,11 +36,12 @@ public class GetBookingTest extends BaseTest {
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Category({AllTests.class, ContractTests.class})
-    @DisplayName("valida o schema da listagem de reservas")
-    public void validaSchemaDaListagemDeReserva(){
+    @DisplayName("Garantir o schema do retorno da lista de reservas")
+    public void validaSchemaDaListagemDeReserva() {
         getBookingRequest.bookingReturnIds()
                 .then()
                 .statusCode(200)
                 .body(matchesJsonSchema(new File(Utils.getSchemaBasePath("booking", "bookings"))));
     }
+
 }

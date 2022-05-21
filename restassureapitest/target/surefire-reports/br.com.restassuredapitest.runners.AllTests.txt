@@ -1,11 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: br.com.restassuredapitest.runners.AllTests
 -------------------------------------------------------------------------------
-Tests run: 5, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 9.85 s <<< FAILURE! - in br.com.restassuredapitest.runners.AllTests
-validaRetornoDeTokenParaUsuario(br.com.restassuredapitest.tests.auth.tests.PostAuthTest)  Time elapsed: 0.853 s  <<< FAILURE!
-java.lang.AssertionError: 
-1 expectation failed.
-Expected status code <400> but was <200>.
-
-	at br.com.restassuredapitest.tests.auth.tests.PostAuthTest.validaRetornoDeTokenParaUsuario(PostAuthTest.java:27)
-
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.023 s - in br.com.restassuredapitest.runners.AllTests
