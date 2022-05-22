@@ -2,7 +2,7 @@ package br.com.restassuredapitest.tests.auth.tests;
 
 import br.com.restassuredapitest.base.BaseTest;
 import br.com.restassuredapitest.suites.AllTests;
-import br.com.restassuredapitest.suites.SmokeTests;
+import br.com.restassuredapitest.suites.SmokeTest;
 import br.com.restassuredapitest.tests.auth.requests.PostAuthRequest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -19,7 +19,7 @@ public class PostAuthTest extends BaseTest {
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class, SmokeTests.class})
+    @Category({AllTests.class, SmokeTest.class})
     @DisplayName("valida o retorno de token para usuario")
     public void validaRetornoDeTokenParaUsuario() {
         postAuthRequest.tokenReturn()

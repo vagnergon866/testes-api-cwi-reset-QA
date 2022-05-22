@@ -1,28 +1,27 @@
 package br.com.restassuredapitest.tests.booking.tests;
 
 import br.com.restassuredapitest.base.BaseTest;
-import br.com.restassuredapitest.suites.AcceptanceTest;
+import br.com.restassuredapitest.suites.AcceptanceExceptionTest;
+import br.com.restassuredapitest.suites.AcceptanceCripticalTest;
 import br.com.restassuredapitest.suites.AllTests;
 import br.com.restassuredapitest.tests.auth.requests.PostAuthRequest;
+import br.com.restassuredapitest.tests.booking.requests.DeleteBookingRequest;
 import br.com.restassuredapitest.tests.booking.requests.GetBookingRequest;
-import br.com.restassuredapitest.tests.booking.requests.PutBookingRequest;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
-import static org.hamcrest.Matchers.greaterThan;
-
 public class DeleteBookingTest extends BaseTest {
 
-    PutBookingRequest putBookingRequest = new PutBookingRequest();
+    DeleteBookingRequest deleteBookingRequest = new DeleteBookingRequest();
     GetBookingRequest getBookingRequest = new GetBookingRequest();
     PostAuthRequest postAuthRequest = new PostAuthRequest();
 
     @Test
     @Severity(SeverityLevel.BLOCKER)
-    @Category({AllTests.class, AcceptanceTest.class})
+    @Category({AllTests.class, AcceptanceCripticalTest.class})
     @DisplayName("Excluir um reserva com sucesso")
     public void excluiUmaReservaComSucesso(){
         int primeiroId = getBookingRequest.bookingReturnIds()
@@ -31,12 +30,48 @@ public class DeleteBookingTest extends BaseTest {
                 .extract()
                 .path("[0].bookingid");
 
-        putBookingRequest.updateBookingToken(primeiroId, postAuthRequest.getToken())
+        deleteBookingRequest.deleteBooking(primeiroId, postAuthRequest.getToken())
                 .then()
-                .statusCode(200)
-                .body("size()", greaterThan(0));
-
+                .statusCode(201);
 
 
     }
+
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Category({AllTests.class, AcceptanceExceptionTest.class})
+    @DisplayName("Tentar excluir um reserva que não existe")
+    public void excluiUmaReservaQueNaoExiste(){
+        int id = getBookingRequest.bookingReturnIds()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("[999].bookingid");
+
+        deleteBookingRequest.deleteBooking(id, postAuthRequest.getToken())
+                .then()
+                .statusCode(500);
+
+
+    }
+
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Category({AllTests.class, AcceptanceCripticalTest.class})
+    @DisplayName("Excluir uma reserva sem autorização")
+    public void excluiUmaReservaSemAutorizacao(){
+        int primeiroId = getBookingRequest.bookingReturnIds()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("[0].bookingid");
+
+        deleteBookingRequest.deleteBookingSemAutorizacao(primeiroId)
+                .then()
+                .statusCode(403);
+
+
+    }
+
+
 }

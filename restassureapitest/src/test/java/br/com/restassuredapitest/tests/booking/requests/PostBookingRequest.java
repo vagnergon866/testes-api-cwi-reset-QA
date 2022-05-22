@@ -17,4 +17,24 @@ public class PostBookingRequest {
                 .body(bookingPayloads.payloadValidBooking().toString())
                 .post("booking");
     }
+
+    @Step("Cria uma nova reserva com payload invalido")
+    public Response createBookingPayloadInvalido(){
+        return given()
+                .header("Content-Type", "application/json")
+                .when()
+                .body(bookingPayloads.payloadInvalido().toString())
+                .post("booking");
+    }
+
+    @Step("Cria uma nova reserva com peyload com mais parametros")
+    public Response createBookingPayloadComMaisParametros(){
+        return given()
+                .header("Content-Type", "application/json")
+                .when()
+                .body(bookingPayloads.payloadComMaisParametros().toString())
+                .post("booking");
+    }
+
+
 }

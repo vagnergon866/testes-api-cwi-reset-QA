@@ -14,7 +14,30 @@ public class PutBookingRequest {
         return given()
                 .header("Content-Type", "application/json")
                 .header( "Accept","application/json")
-                .header("Cookie",token)
+                .header("Cookie", token)
+                .when()
+                .body(bookingPayloads.payloadValidBooking().toString())
+                .put("booking/"+ id);
+
+    }
+
+    @Step("Atualiza reserva sem enviar o token")
+    public Response updateBookingSemToken(int id) {
+        return given()
+                .header("Content-Type", "application/json")
+                .header( "Accept","application/json")
+                .when()
+                .body(bookingPayloads.payloadValidBooking().toString())
+                .put("booking/"+ id);
+
+    }
+
+    @Step("Atualiza uma reserva especificada com basic auth")
+    public Response updateBookingBasicAuth(int id, String basic) {
+        return given()
+                .header("Content-Type", "application/json")
+                .header( "Accept","application/json")
+                .header("Authorisation", basic)
                 .when()
                 .body(bookingPayloads.payloadValidBooking().toString())
                 .put("booking/"+ id);

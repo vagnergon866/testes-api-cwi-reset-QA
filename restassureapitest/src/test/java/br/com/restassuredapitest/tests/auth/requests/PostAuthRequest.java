@@ -11,7 +11,6 @@ public class PostAuthRequest {
 
     @Step("Retorna o Token")
     public Response tokenReturn() {
-
         return given()
                 .header("Content-Type", "application/json")
                 .when()
@@ -26,5 +25,34 @@ public class PostAuthRequest {
                 .statusCode(200)
                 .extract()
                 .path("token");
+
+    }
+
+    @Step("Busca o token invalido")
+    public String getTokenInvalido() {
+        return "token=1321321" + this.tokenReturn()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("token");
+
+    }
+
+    @Step("Retorna usuario e senha")
+    public Response retornaUmUsuarioESenha() {
+         return given()
+                 .header("Content-Type", "application/json")
+                 .when()
+                 .body(authPayloads.jsonAuthLogin().toString())
+                 .post("auth");
+    }
+
+    @Step("Busca usuario e senha")
+    public String getUsuarioESenha(){
+        return "basic" + this.retornaUmUsuarioESenha()
+                .then()
+                .statusCode(200)
+                .extract()
+                .path("basic");
     }
 }

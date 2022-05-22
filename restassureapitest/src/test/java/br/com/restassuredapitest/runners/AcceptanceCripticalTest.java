@@ -7,11 +7,11 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
-@Categories.IncludeCategory(br.com.restassuredapitest.suites.AcceptanceTest.class)
+@Categories.IncludeCategory(br.com.restassuredapitest.suites.AcceptanceCripticalTest.class)
 @Suite.SuiteClasses({
-        AcceptanceTest.class,
+        AcceptanceCripticalTest.class,
         PostBookingTest.class,
         DeleteBookingTest.class
 })
-public class AcceptanceTest {
+public class AcceptanceCripticalTest {
 }

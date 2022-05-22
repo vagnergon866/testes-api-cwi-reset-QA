@@ -1,4 +1,33 @@
 -------------------------------------------------------------------------------
 Test set: br.com.restassuredapitest.runners.AllTests
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 13.023 s - in br.com.restassuredapitest.runners.AllTests
+Tests run: 26, Failures: 3, Errors: 2, Skipped: 0, Time elapsed: 34.88 s <<< FAILURE! - in br.com.restassuredapitest.runners.AllTests
+validaListarIdsComFiltroFirstnameMalFormatado(br.com.restassuredapitest.tests.booking.tests.GetBookingTest)  Time elapsed: 0.918 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <400> but was <200>.
+
+	at br.com.restassuredapitest.tests.booking.tests.GetBookingTest.validaListarIdsComFiltroFirstnameMalFormatado(GetBookingTest.java:181)
+
+validarAlteracaoDeUmaReservaUtilizandoBasicAuth(br.com.restassuredapitest.tests.booking.tests.PutBookingTest)  Time elapsed: 2.421 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <200> but was <403>.
+
+	at br.com.restassuredapitest.tests.booking.tests.PutBookingTest.validarAlteracaoDeUmaReservaUtilizandoBasicAuth(PutBookingTest.java:90)
+
+validarAlteracaoDeUmaReservaQueNaoExiste(br.com.restassuredapitest.tests.booking.tests.PutBookingTest)  Time elapsed: 0.818 s  <<< ERROR!
+java.lang.NullPointerException
+	at br.com.restassuredapitest.tests.booking.tests.PutBookingTest.validarAlteracaoDeUmaReservaQueNaoExiste(PutBookingTest.java:105)
+
+validaCriacaoDeUmaNovaReservaComPayloadComMaisParametros(br.com.restassuredapitest.tests.booking.tests.PostBookingTest)  Time elapsed: 0.805 s  <<< FAILURE!
+java.lang.AssertionError: 
+1 expectation failed.
+Expected status code <500> but was <200>.
+
+	at br.com.restassuredapitest.tests.booking.tests.PostBookingTest.validaCriacaoDeUmaNovaReservaComPayloadComMaisParametros(PostBookingTest.java:68)
+
+excluiUmaReservaQueNaoExiste(br.com.restassuredapitest.tests.booking.tests.DeleteBookingTest)  Time elapsed: 0.773 s  <<< ERROR!
+java.lang.NullPointerException
+	at br.com.restassuredapitest.tests.booking.tests.DeleteBookingTest.excluiUmaReservaQueNaoExiste(DeleteBookingTest.java:49)
+

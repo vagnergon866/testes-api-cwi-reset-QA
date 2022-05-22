@@ -1,4 +1,4 @@
 package br.com.restassuredapitest.suites;
 
-public interface ContractTests {
+public interface SmokeTest {
 }
