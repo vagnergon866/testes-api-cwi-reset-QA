@@ -4,6 +4,7 @@ import br.com.restassuredapitest.base.BaseTest;
 import br.com.restassuredapitest.suites.AllTests;
 import br.com.restassuredapitest.suites.SecurityTest;
 import br.com.restassuredapitest.tests.auth.requests.PostAuthRequest;
+import br.com.restassuredapitest.tests.booking.requests.DeleteBookingRequest;
 import br.com.restassuredapitest.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitest.tests.booking.requests.PutBookingRequest;
 import io.qameta.allure.Feature;
@@ -20,6 +21,7 @@ public class PutBookingTest extends BaseTest {
     PutBookingRequest putBookingRequest = new PutBookingRequest();
     GetBookingRequest getBookingRequest = new GetBookingRequest();
     PostAuthRequest postAuthRequest = new PostAuthRequest();
+    DeleteBookingRequest deleteBookingRequest = new DeleteBookingRequest();
 
     @Test
     @Severity(SeverityLevel.NORMAL)
@@ -85,12 +87,10 @@ public class PutBookingTest extends BaseTest {
                 .extract()
                 .path("[0].bookingid");
 
-         putBookingRequest.updateBookingBasicAuth(id, postAuthRequest.getUsuarioESenha())
+        putBookingRequest.updateBookingBasicAuth(id)
                  .then()
                  .statusCode(200)
                  .body("size()", greaterThan(0));
-
-
     }
 
     @Test
@@ -102,11 +102,15 @@ public class PutBookingTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .extract()
-                .path("[999].bookingid");
+                .path("[0].bookingid");
+
+        deleteBookingRequest.deleteBooking(id, postAuthRequest.getToken())
+                .then()
+                .statusCode(201);
 
         putBookingRequest.updateBookingToken(id, postAuthRequest.getToken())
                 .then()
-                .statusCode(500);
+                .statusCode(405);
 
 
     }

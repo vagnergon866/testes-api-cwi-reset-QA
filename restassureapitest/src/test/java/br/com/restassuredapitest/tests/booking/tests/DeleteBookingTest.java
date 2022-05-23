@@ -34,7 +34,9 @@ public class DeleteBookingTest extends BaseTest {
                 .then()
                 .statusCode(201);
 
-
+        getBookingRequest.retornaUmIdEspecifico(primeiroId)
+                .then()
+                .statusCode(404);
     }
 
     @Test
@@ -46,13 +48,15 @@ public class DeleteBookingTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .extract()
-                .path("[999].bookingid");
+                .path("[0].bookingid");
 
         deleteBookingRequest.deleteBooking(id, postAuthRequest.getToken())
                 .then()
-                .statusCode(500);
+                .statusCode(201);
 
-
+        deleteBookingRequest.deleteBooking(id, postAuthRequest.getToken())
+                .then()
+                .statusCode(405);
     }
 
     @Test
@@ -69,8 +73,6 @@ public class DeleteBookingTest extends BaseTest {
         deleteBookingRequest.deleteBookingSemAutorizacao(primeiroId)
                 .then()
                 .statusCode(403);
-
-
     }
 
 

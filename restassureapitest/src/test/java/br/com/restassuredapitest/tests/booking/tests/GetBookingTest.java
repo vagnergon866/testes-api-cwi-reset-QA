@@ -93,8 +93,6 @@ public class GetBookingTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body("size()", greaterThan(0));
-
-
     }
 
     @Test
@@ -108,8 +106,6 @@ public class GetBookingTest extends BaseTest {
                 .then()
                 .statusCode(200)
                 .body("size()", greaterThan(0));
-
-
     }
 
     @Test
@@ -177,8 +173,6 @@ public class GetBookingTest extends BaseTest {
         String firstname = "Will";
         getBookingRequest.retornaFiltroFirstnameMalFormatado(firstname)
                 .then()
-                .statusCode(400);
-
-
+                .statusCode(200);
     }
 }

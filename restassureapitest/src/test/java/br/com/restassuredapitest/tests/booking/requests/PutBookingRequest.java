@@ -33,14 +33,15 @@ public class PutBookingRequest {
     }
 
     @Step("Atualiza uma reserva especificada com basic auth")
-    public Response updateBookingBasicAuth(int id, String basic) {
+    public Response updateBookingBasicAuth(int id) {
         return given()
                 .header("Content-Type", "application/json")
                 .header( "Accept","application/json")
-                .header("Authorisation", basic)
+                .auth()
+                .preemptive()
+                .basic("admin", "password123")
                 .when()
                 .body(bookingPayloads.payloadValidBooking().toString())
                 .put("booking/"+ id);
-
     }
 }

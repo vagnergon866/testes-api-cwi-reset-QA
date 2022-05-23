@@ -65,7 +65,7 @@ public class PostBookingTest extends BaseTest {
     public void validaCriacaoDeUmaNovaReservaComPayloadComMaisParametros() {
         postBookingRequest.createBookingPayloadComMaisParametros()
                 .then()
-                .statusCode(500);
+                .statusCode(200);
 
     }
 
@@ -74,6 +74,11 @@ public class PostBookingTest extends BaseTest {
     @DisplayName("Validar a criação de mais de uma reserva em sequência")
     @Category({AllTests.class, AcceptanceExceptionTest.class})
     public void validaCriacaoDeMaisDeUmaReserva() {
+        postBookingRequest.createBooking()
+                .then()
+                .statusCode(200)
+                .body("size()", greaterThan(0));
+
         postBookingRequest.createBooking()
                 .then()
                 .statusCode(200)
